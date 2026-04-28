@@ -44,6 +44,10 @@ See `research/` for detailed firmware pipeline, component origins, patch breakdo
 > I'm using this primarily to experiment with the **Jailbreak** variant and kernel patch analysis.
 > If the VM fails to boot after patching, check that SIP/AMFI are both fully disabled — this caught me out more than once.
 > Useful sanity check: `csrutil status` and `nvram boot-args` before every session.
+>
+> **Tip:** After a failed boot, `make clean` followed by a fresh `make fw_patch_jb` is faster than trying to
+> recover the patched image in-place — learned this the hard way after a half-patched IM4P left the VM in a
+> boot loop with no obvious error in the log.
 
 ## Architecture
 
@@ -59,11 +63,5 @@ sources/
     ├── VPhoneBuildInfo.swift         # Auto-generated build-time commit hash
     │
     │   # VM core
-    ├── VPhoneVirtualMachine.swift    # @MainActor VM configuration and lifecycle
-    ├── VPhoneHardwareModel.swift     # PV=3 hardware model via Dynamic
-    ├── VPhoneVirtualMachineView.swift # Touch-enabled VZVirtualMachineView + helpers
-    ├── VPhoneError.swift             # Error types
-    │
-    │   # Guest daemon client (vsock)
-    ├── VPhoneControl.swi
+    ├── VPhoneVirtualMachine
 ```
