@@ -51,6 +51,10 @@ See `research/` for detailed firmware pipeline, component origins, patch breakdo
 >
 > **Tip:** When monitoring the JB setup on first boot, `tail -f /var/log/vphone_jb_setup.log` inside the VM
 > is the quickest way to confirm Sileo and TrollStore installed correctly before rebooting.
+>
+> **Tip:** Before any kernel patch session, I snapshot the VM disk image with
+> `cp -c vphone.img vphone.img.bak` (APFS clonefile — instant, no extra space until divergence).
+> Saved me multiple times when a bad patch left no clean recovery path.
 
 ## Architecture
 
@@ -58,8 +62,5 @@ See `research/` for detailed firmware pipeline, component origins, patch breakdo
 Makefile                          # Single entry point — run `make help`
 
 sources/
-├── vphone.entitlements               # Private API entitlements (5 keys)
-└── vphone-cli/                       # Swift 6.0 executable (pure Swift, no ObjC)
-    ├── main.swift                    # Entry point — NSApplication + AppDelegate
-    ├── VPhoneAppDelegate.
+├── vphone.entitlements               # Private API entitlement
 ```
