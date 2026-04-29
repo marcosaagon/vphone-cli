@@ -2,6 +2,9 @@
 
 import PackageDescription
 
+// Personal fork of goforwardbetter/vphone-cli
+// Customized for local development and experimentation
+
 let package = Package(
     name: "vphone-cli",
     platforms: [
@@ -20,6 +23,9 @@ let package = Package(
                 .product(name: "Dynamic", package: "Dynamic"),
             ],
             path: "sources/vphone-cli",
+            swiftSettings: [
+                .unsafeFlags(["-warnings-as-errors"]),
+            ],
             linkerSettings: [
                 .linkedFramework("Virtualization"),
                 .linkedFramework("AppKit"),
