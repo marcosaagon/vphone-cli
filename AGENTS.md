@@ -48,6 +48,9 @@ See `research/` for detailed firmware pipeline, component origins, patch breakdo
 > **Tip:** After a failed boot, `make clean` followed by a fresh `make fw_patch_jb` is faster than trying to
 > recover the patched image in-place — learned this the hard way after a half-patched IM4P left the VM in a
 > boot loop with no obvious error in the log.
+>
+> **Tip:** When monitoring the JB setup on first boot, `tail -f /var/log/vphone_jb_setup.log` inside the VM
+> is the quickest way to confirm Sileo and TrollStore installed correctly before rebooting.
 
 ## Architecture
 
@@ -58,10 +61,5 @@ sources/
 ├── vphone.entitlements               # Private API entitlements (5 keys)
 └── vphone-cli/                       # Swift 6.0 executable (pure Swift, no ObjC)
     ├── main.swift                    # Entry point — NSApplication + AppDelegate
-    ├── VPhoneAppDelegate.swift       # App lifecycle, SIGINT, VM start/stop
-    ├── VPhoneCLI.swift               # ArgumentParser options (no execution logic)
-    ├── VPhoneBuildInfo.swift         # Auto-generated build-time commit hash
-    │
-    │   # VM core
-    ├── VPhoneVirtualMachine
+    ├── VPhoneAppDelegate.
 ```
