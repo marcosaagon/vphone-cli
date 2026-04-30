@@ -54,13 +54,6 @@ See `research/` for detailed firmware pipeline, component origins, patch breakdo
 >
 > **Tip:** Before any kernel patch session, I snapshot the VM disk image with
 > `cp -c vphone.img vphone.img.bak` (APFS clonefile — instant, no extra space until divergence).
-> Saved me multiple times when a bad patch left no clean recovery path.
-
-## Architecture
-
-```
-Makefile                          # Single entry point — run `make help`
-
-sources/
-├── vphone.entitlements               # Private API entitlement
-```
+>
+> **Tip:** Keep a dated log of which kernel patches you've applied and what they target — I use a simple
+> `research/personal_patch_log.md` file. Invaluable when bisecting a regression across sessions.
